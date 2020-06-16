@@ -40,7 +40,7 @@ TrafficLightPhase TrafficLight::getCurrentPhase()
 {
     return _currentPhase;
 }
-
+*/
 void TrafficLight::simulate()
 {
     // FP.2b : Finally, the private method „cycleThroughPhases“ should be started in a thread when the public method „simulate“ is called. To do this, use the thread queue in the base class. 
@@ -53,6 +53,36 @@ void TrafficLight::cycleThroughPhases()
     // and toggles the current phase of the traffic light between red and green and sends an update method 
     // to the message queue using move semantics. The cycle duration should be a random value between 4 and 6 seconds. 
     // Also, the while-loop should use std::this_thread::sleep_for to wait 1ms between two cycles. 
+    std::chrono::time_point<std::chrono::system_clock> start,final;
+    std::chrono::duration<double> diff;
+    while(1)
+    {
+        //taken from https://www.fluentcpp.com/2019/05/24/how-to-fill-a-cpp-collection-with-random-values/
+        std::random_device random_device;
+        std::mt19937 random_engine(random_device());
+        std::uniform_real_distribution<double> distribution(4, 6);
+ 
+        double randomNumber = (distribution(random_engine));
+        
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        start=std::chrono::system_clock::now();
+        do
+        {
+            final=std::chrono::system_clock::now();
+            diff=final-start;
+        }while(diff.count()<randomNumber);
+        if (_currentPhase==red)
+        {
+            _currentPhase=green;
+        }
+        else
+        {
+            _currentPhase=red;
+        }
+        auto message=_currentPhase;
+        std::thread t=std::thread(&MessageQueue<TrafficLightPhase>::send,_msg,std::move(message));
+        
+
+    }
 }
 
-*/
