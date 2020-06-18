@@ -125,11 +125,14 @@ int main()
 
     // simulate intersection
     std::for_each(intersections.begin(), intersections.end(), [](std::shared_ptr<Intersection> &i) {
+        std::cout<<"interseccion"<<std::endl;
         i->simulate();
     });
 
     // simulate vehicles
     std::for_each(vehicles.begin(), vehicles.end(), [](std::shared_ptr<Vehicle> &v) {
+                std::cout<<"vehiculo"<<std::endl;
+
         v->simulate();
     });
 

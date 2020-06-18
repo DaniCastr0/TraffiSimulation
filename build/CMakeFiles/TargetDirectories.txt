@@ -1,0 +1,3 @@
+/home/dani/CppND-Program-a-Concurrent-Traffic-Simulation/build/CMakeFiles/rebuild_cache.dir
+/home/dani/CppND-Program-a-Concurrent-Traffic-Simulation/build/CMakeFiles/edit_cache.dir
+/home/dani/CppND-Program-a-Concurrent-Traffic-Simulation/build/CMakeFiles/traffic_simulation.dir
